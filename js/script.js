@@ -97,13 +97,6 @@ function useKeyboard(e) {
    }
 }
 
-function backspace(e) {
-   if (e.key === "Backspace") {
-      clickButton.num1 = num1.slice(0, -1);
-   }
-}
-
-
 
 // add events
 
@@ -118,7 +111,6 @@ for (var i=0; i < ops.length; i++) {
 result.addEventListener('click', resultNum, false);
 clear.addEventListener('click', clearViewer, false);
 document.addEventListener('keyup', useKeyboard, false);
-document.addEventListener('keyup', backspace, false);
 
 
 
