@@ -4,55 +4,45 @@ var viewer = document.querySelector(".number-result");
 var clear = document.querySelector(".clear");
 var ops = document.querySelectorAll(".operator");
 var result = document.querySelector(".equals");
-var num1 = "";
-var num2 = "";
+var value;
+var num;
 var operator;
 var score;
+var backspace;
 
 
 
 // clear viewer
 function clearViewer() {
-   viewer.innerHTML = "0"; 
-   num1 = "";
-   num2 = "";
+   viewer.innerHTML = "";
+   num = "";
    operator = "";
    score = "";
+   
 }
 
 
 
-function clickButton(e) {
-      num1 += this.value;
-      viewer.innerHTML = num1; 
+function clickButton() {
+      num = this.value;
+      viewer.innerHTML += num; 
+
 }
    
    
     
-function clickOperator(e) {
+function clickOperator() {
       operator = this.value;
-      viewer.innerHTML = operator;
-      num2 = num1;
-      num1 = "";     
+      viewer.innerHTML += operator;
 }
          
 
 function resultNum() {
    
-      num1 = parseFloat(num1);
-      num2 = parseFloat(num2);
+      value = viewer.innerHTML;
    
-      if (operator === "+") {
-         score = num2 + num1;
-      } else if (operator === "-") {
-         score = num2 - num1;
-      } else if (operator === "*") {
-         score = num2 * num1;
-      } else if (operator === "/") {
-         score = num2 / num1;
-      } 
-   
-      num1 = score;
+      value = value.replace(/[^-()\d/*+.]/g, '');
+      score = eval(value);
    
       viewer.innerHTML = score;
 }
@@ -97,6 +87,14 @@ function useKeyboard(e) {
    }
 }
 
+function backspaceButton(e) {
+   
+   if (e.key === "Backspace" ) {
+      backspace = viewer.innerHTML;
+      viewer.innerHTML = backspace.slice(0, - 1);
+  }
+}
+
 
 // add events
 
@@ -111,6 +109,7 @@ for (var i=0; i < ops.length; i++) {
 result.addEventListener('click', resultNum, false);
 clear.addEventListener('click', clearViewer, false);
 document.addEventListener('keyup', useKeyboard, false);
+document.addEventListener('keyup', backspaceButton, false);
 
 
 
