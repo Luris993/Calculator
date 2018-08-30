@@ -42,13 +42,23 @@ body {
 .result {
    .number-result {
       text-align: right;
-      width: 245px;
       font-size: 3rem;
+      width: 55%;
       color: #E4F1FE;
       line-height: 70px;
       height: 70px;
       overflow: hidden;
       text-overflow: ellipsis;
+   }
+   .button-delete {
+      height: 70px;
+      width: 30px;
+      line-height: 70px;
+      font-size: 3rem;
+      color: #E4F1FE;
+   }
+   .backspace-button {
+      cursor: pointer;
    }
 }
 
